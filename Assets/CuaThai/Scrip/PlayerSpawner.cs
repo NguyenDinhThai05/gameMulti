@@ -20,13 +20,22 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
                 (runner, obj) =>
                 {
                     var playerSetUp = obj.GetComponent<PlayerSetUp>();
-                    if (playerSetUp != null)
-                    {
-                        playerSetUp.SetUpCamera();
+                    if (playerSetUp != null) playerSetUp.SetUpCamera();
 
+
+                    var playerGun = obj.GetComponent<PlayerGun>();
+                    if (playerGun != null) playerGun.networkRunner = runner;
+                    var playerPropotile = obj.GetComponent<PlayerPrototile>();
+                    if(playerPropotile != null)
+                    {
+                        playerPropotile.NetworkRunner = runner;
+                        playerPropotile.networkObj = obj;
                     }
+                
+
+            
                 });
-        };
+        }
     }
 }
     

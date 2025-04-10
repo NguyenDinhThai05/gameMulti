@@ -7,10 +7,10 @@ public class PlayerSetUp : NetworkBehaviour
     {
         if(Object.HasStateAuthority)
         {
-            var camera = FindFirstObjectByType<CameraFollow>();
-            if(camera!= null)
+            var cameraFollow = FindFirstObjectByType<CameraFollow>();
+            if(cameraFollow!= null)
             {
-                camera.AssignCamera(transform);
+                cameraFollow.AssignCamera(transform);
 
             }
         }

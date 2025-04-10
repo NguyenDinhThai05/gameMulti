@@ -8,7 +8,8 @@ public class PlayerPrototile : NetworkBehaviour
     public float maxHealth { get; set; }
 
     public TextMeshProUGUI healthText;
-
+    public NetworkObject networkObj;
+    public NetworkRunner NetworkRunner;
 
 
     [Networked, OnChangedRender(nameof(OnSpeedChanged))]
@@ -33,6 +34,10 @@ public class PlayerPrototile : NetworkBehaviour
         if(other.gameObject.CompareTag("pig"))
         {
             health -= 10;
+            if(health <= 0)
+            {
+                NetworkRunner.Despawn(networkObj);
+            }
         }
     }
     private void Start()
